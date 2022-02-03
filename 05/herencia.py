@@ -81,3 +81,7 @@ supervisor_tres = Supervisor('Pedro', 12345678, 'Castillo')
 supervisor_tres.print_apellido()
 supervisor_tres.hablar('')
 supervisor_tres.full_name()
+
+
+
+
