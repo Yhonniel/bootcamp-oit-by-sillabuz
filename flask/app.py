@@ -32,34 +32,92 @@ db = {
     "products": [
         {
             "id": 1,
-            "name": "manzanas",
-            "shopId": 1
+            "name": "Meyoji Robast Drone",
+            "image": "img/product/tranding-1.jpg",
+            "price": "$100.00",
+            "category": "Dron"
         },
         {
             "id": 2,
-            "name": "peras",
-            "shopId": 1
+            "name": "Ut praesentium earum",
+            "image": "img/product/tranding-2.jpg",
+            "price": "$80.00",
+            "category": "Dron"
         },
         {
             "id": 3,
-            "name": "escoba",
-            "shopId": 2
+            "name": "Consectetur adipisicing",
+            "image": "img/product/tranding-3.jpg",
+            "price": "$50.00",
+            "category": "Dron"
         },
         {
             "id": 4,
-            "name": "detergente",
-            "shopId": 2
+            "name": "  adipisicing",
+            "image": "img/product/tranding-1.jpg",
+            "price": "$50.00",
+            "category": "Dron"
+        }, {
+            "id": 5,
+            "name": "Consectetur  ",
+            "image": "img/product/tranding-3.jpg",
+            "price": "$50.00",
+            "category": "Dron"
+        }, {
+            "id": 6,
+            "name": "Peruvian Drone",
+            "image": "img/product/tranding-2.jpg",
+            "price": "$50.00",
+            "category": "Dron"
+        }
+    ],
+    "testimonials": [
+        {
+            "id": 1,
+            'image': 'img/about/team-1.jpg',
+            'message': """There are many variations of passages of Lorem Ipsum available, but the majority
+                                        have suffered alteration in some form, by injected humour, or randomised words
+                                        which don't look even""",
+            'fullname': 'John Sullivan',
+            'role': 'Customer'
+        },
+        {
+            "id": 2,
+            'image': 'img/about/team-2.jpg',
+            'message': """College in Virginia, looked up one of the more obscure Latin words, consectetur,
+                                        from a Lorem Ipsum passage, and going through the cites""",
+            'fullname': 'Jenifer Brown',
+            'role': ' Manager of AZ'
+        },
+        {
+            "id": 3,
+            'image': 'img/about/team-3.jpg',
+            'message': """Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                                        in a piece of classical Latin literature from 45""",
+            'fullname': 'Kathy Young',
+            'role': 'CEO of SunPark'
+        },
+        {
+            "id": 4,
+            'image': 'img/about/team-4.jpg',
+            'message': """Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots
+                                       in a piece of classical Latin literature from 45""",
+            'fullname': 'Baby Drash',
+            'role': 'CTO OF PERUVIAN'
         }
     ]
 }
 
+
 @app.route('/')
 def index():
+    productos = db.get('products')
+    testimonials = db.get('testimonials')
     data = {
-        'nombre': 'Yahyr',
-        'edad': 24
+        'productos': productos,
+        'testimonials': testimonials
     }
-    return render_template('index.html')
+    return render_template('index.html', data=data)
 
 
 @app.route('/productos')
