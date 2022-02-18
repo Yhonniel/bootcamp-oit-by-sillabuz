@@ -1,7 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
+# Base de datos en memoria
 db = {
     "shop": [
         {
@@ -105,6 +106,162 @@ db = {
             'fullname': 'Baby Drash',
             'role': 'CTO OF PERUVIAN'
         }
+    ],
+    "product-details": [
+        {
+            "id": 1,
+            "name": "Meyoji Robast Drone",
+            "image": "img/product/tranding-1.jpg",
+            "price": "$100.00",
+            "category": "Dron",
+            "rate": 5,
+            "color": ['red', 'blue'],
+            'stock': 0,
+            'description': """ eget velit. Donec ac tempus ante. Fusce ultricies massa massa. 
+                            Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in """,
+            'review': {
+                'client': {
+                    'name': 'Juan',
+                    'message': 'roadthemes',
+                    "datetime": 'September 12, 2018',
+                    'rate': 2
+                }
+            },
+            'images': [
+                'img/product/details-1.jpg',
+                'img/product/details-2.jpg',
+                'img/product/details-3.jpg',
+                'img/product/details-4.jpg',
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Ut praesentium earum",
+            "image": "img/product/tranding-2.jpg",
+            "price": "$80.00",
+            "category": "Dron",
+            "rate": 4,
+            "color": ['red', 'blue'],
+            'stock': 500,
+            'description': """ eget velit. Donec ac tempus ante. Fusce ultricies massa massa. 
+                            Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in """,
+            'review': {
+                'client': {
+                    'name': 'Juan',
+                    'message': 'roadthemes',
+                    "datetime": 'September 12, 2018',
+                    'rate': 5
+                }
+            },
+            'images': [
+                'img/product/details-1.jpg',
+                'img/product/details-2.jpg',
+                'img/product/details-3.jpg',
+                'img/product/details-4.jpg',
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Consectetur adipisicing",
+            "image": "img/product/tranding-3.jpg",
+            "price": "$50.00",
+            "category": "Dron",
+            "rate": 5,
+            "color": ['red', 'blue'],
+            'stock': 200,
+            'description': """ eget velit. Donec ac tempus ante. Fusce ultricies massa massa. 
+                            Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in """,
+            'review': {
+                'client': {
+                    'name': 'Juan',
+                    'message': 'roadthemes',
+                    "datetime": 'September 12, 2018',
+                    'rate': 3
+                }
+            }
+        },
+        {
+            "id": 4,
+            "name": "  adipisicing",
+            "image": "img/product/tranding-1.jpg",
+            "price": "$50.00",
+            "category": "Dron",
+            "rate": 3,
+            "color": ['red', 'blue'],
+            'stock': 40,
+            'description': """ eget velit. Donec ac tempus ante. Fusce ultricies massa massa. 
+                            Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in """,
+            'review': {
+                'client': {
+                    'name': 'Juan',
+                    'message': 'roadthemes',
+                    "datetime": 'September 12, 2018',
+                    'rate': 4
+                }
+            },
+            'images': [
+                'img/product/details-1.jpg',
+                'img/product/details-2.jpg',
+                'img/product/details-3.jpg',
+                'img/product/details-4.jpg',
+            ]
+        }, {
+            "id": 5,
+            "name": "Consectetur  ",
+            "image": "img/product/tranding-3.jpg",
+            "price": "$50.00",
+            "category": "Dron",
+            "rate": 2,
+            "color": ['red', 'blue'],
+            'stock': 55,
+            'description': """ eget velit. Donec ac tempus ante. Fusce ultricies massa massa. 
+                            Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in """,
+            'review': {
+                'client': {
+                    'name': 'Juan',
+                    'message': 'roadthemes',
+                    "datetime": 'September 12, 2018',
+                    'rate': 2
+                }
+            },
+            'images': [
+                'img/product/details-1.jpg',
+                'img/product/details-2.jpg',
+                'img/product/details-3.jpg',
+                'img/product/details-4.jpg',
+            ]
+        }, {
+            "id": 6,
+            "name": "Peruvian Drone",
+            "image": "img/product/tranding-2.jpg",
+            "price": "$50.00",
+            "category": "Dron",
+            "rate": 1,
+            "color": ['red', 'blue'],
+            'stock': 150,
+            'description': """ eget velit. Donec ac tempus ante. Fusce ultricies massa massa. 
+                            Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. 
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in """,
+            'review': {
+                'client': {
+                    'name': 'Juan',
+                    'message': 'roadthemes',
+                    "datetime": 'September 12, 2018',
+                    'rate': 1
+                }
+            },
+            'images': [
+                'img/product/details-1.jpg',
+                'img/product/details-2.jpg',
+                'img/product/details-3.jpg',
+                'img/product/details-4.jpg',
+            ]
+        }
     ]
 }
 
@@ -120,13 +277,20 @@ def index():
     return render_template('index.html', data=data)
 
 
-@app.route('/productos')
-def productos():
-    # DB
-    productos = db.get('products')
+# Maestro detalle
+# Pasar parametros por URL
+@app.route('/productos/<int:id>')
+def productos(id):
+    productos = db.get('product-details')
+    producto = {}
+    for p in productos:
+        if p.get('id') == id:
+            producto = p
+
     data = {
-        'productos': productos
+        'producto': producto
     }
+
     return render_template('productos.html', data=data)
 
 
@@ -136,6 +300,53 @@ def tienda():  # Controllador
     tienda = db.get('shop')
     data = {'tienda': tienda}
     return render_template('tienda.html', data=data)
+
+
+# VERBOS
+# GET - POST - PUT - DELETE
+API_V1 = '/api/v1/'
+
+
+@app.route(API_V1 + 'productos')  # GET => S
+def api_products():
+    productos = db.get('products')
+    return jsonify(productos)
+    # return { "nombre": "Yahyr", "apellido": "Paredes" } # Diccionario "cadena"
+    # return jsonify(
+    #     nombre='Jhon Doe',
+    #     apellido='Paredes',
+    #     edad=24
+    # ) # Formateror de json (ordena)
+
+
+@app.route(API_V1 + 'producto/<int:id>')  # GET => /ID
+def api_product_detail(id):
+    productos = db.get('product-details')
+    producto = {}
+    for p in productos:
+        if p.get('id') == id:
+            producto = p
+
+    return jsonify(producto)
+
+
+@app.route(API_V1 + 'producto', methods=['POST']) # POST
+def api_product_create():
+    if request.method == 'POST':
+
+        print(request.method)
+        print(request.json) # formateando en json
+        print(request.data) # diccionario
+        print(request.files) # archivos - multipart
+
+        return {}
+
+    # if request.method == 'GET':
+    #     return 'Method not implement'
+
+
+
+
 
 
 if __name__ == '__main__':
