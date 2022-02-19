@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Tienda</h1>
+
+<!--Siempre usa esta opcion para ver que tipo de datos-->
+<!--vas a imprimir {{data}}-->
+<p>{{data}}</p>
+
+{% for value in data.tienda %}
+<p> ID:  {{value.id}}  </p>
+<p> Direccion:  {{value.address}}  </p>
+<p> Tipo:  {{value.type}}  </p>
+<p> Nombre:  {{value.nombre}}  </p>
+{% endfor %}
+
+</body>
+</html>
