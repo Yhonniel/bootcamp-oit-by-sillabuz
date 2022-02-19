@@ -10,5 +10,5 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0.0)
     category = models.CharField(max_length=100, blank=False)
     image = models.ImageField(
-        upload_to='static/img/product/',
-        default='static/img/product/1.png')
+        upload_to='img/product/',
+        default='img/product/1.png')
