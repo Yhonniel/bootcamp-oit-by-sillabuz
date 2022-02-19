@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from web import views
+from commons import views as common_views
+from web import views as web_views
 
 urlpatterns = [
-    path('', views.index),
+    path('', web_views.index),
     path('admin/', admin.site.urls),
+    path('commons/genders', common_views.genders)
 ]
