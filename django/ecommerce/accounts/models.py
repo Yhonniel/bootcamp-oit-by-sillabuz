@@ -50,12 +50,10 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True, )
 
     def __str__(self):
-        print(self.user)
         return str(self.user.email)
 
     def _user(self):
-        print(self.user)
-        return self.user
+        return self.user.email
 
     def _gender(self):
         return self.gender.long_name
