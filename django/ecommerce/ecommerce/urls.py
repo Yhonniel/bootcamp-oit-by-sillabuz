@@ -19,6 +19,9 @@ from django.urls import path
 from commons import views as common_views
 from web import views as web_views
 
+from django.conf.urls.static import static
+from django.conf import settings
+
 urlpatterns = [
     path('', web_views.index),
     path('admin/', admin.site.urls),
