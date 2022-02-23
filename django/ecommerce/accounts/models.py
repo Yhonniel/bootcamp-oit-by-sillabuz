@@ -35,8 +35,7 @@ from commons.models import Gender, DocumentType
 
 
 class Profile(models.Model):
-    # id = pk
-    user = models.OneToOneField(User,  on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
     document_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE)
     document = models.CharField(max_length=20, unique=True)
