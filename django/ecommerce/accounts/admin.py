@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Profile
+from .models import Profile, Testimony
 
 
 # @admin.register(Profile)
@@ -14,5 +14,11 @@ from .models import Profile
     #     print(obj)
     #     return obj.user
 
+@admin.register(Testimony)
+class TestimonyAdmin(admin.ModelAdmin):
+    list_display = ('id', '_email', 'message', 'rate')
+
+# admin.site.register(Testimony, TestimonyAdmin)
 
 admin.site.register(Profile)
+

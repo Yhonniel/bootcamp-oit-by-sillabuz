@@ -45,6 +45,7 @@ class Profile(models.Model):
         upload_to='img/profile',
         default='img/profile/default.png'
     )
+    is_customer = models.BooleanField(default=True, )
     is_active = models.BooleanField(default=True, )
     created_at = models.DateTimeField(auto_now_add=True, )
     updated_at = models.DateTimeField(auto_now=True, )
@@ -60,3 +61,27 @@ class Profile(models.Model):
 
     def _document_type(self):
         return self.document_type.short_name
+
+
+# {
+#     "id": 1, // USER
+#     'image': 'img/about/team-1.jpg', // PROFILE
+#     'message': """There are many variations of passages of Lorem Ipsum available, but the majority
+#                                        have suffered alteration in some form, by injected humour, or randomised words
+#                                        which don't look even""",
+#     'fullname': 'John Sullivan', // USUARIO
+#     'role': 'Customer' // PROFILE
+# },
+
+# Testimonios
+
+class Testimony(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    message = models.TextField()
+    rate = models.DecimalField(max_digits=1, decimal_places=0)
+
+    def __str__(self):
+        return self.profile.user.email
+
+    def _email(self):
+        return self.profile.user.email
