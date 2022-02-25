@@ -8,7 +8,7 @@
 
 {% block body %}
 
-
+    {{ segment }}
     <!--slider area start-->
     <section class="slider_section d-flex align-items-center"
              data-bgimg="/static/img/slider/slider3.jpg">
@@ -209,36 +209,42 @@
     {#        </div>#}
     {#    </section><!--/Blog-->#}
     {##}
-    {#    <!--Testimonials-->#}
-    {#    <section class="pb-60 pt-60 gray-bg">#}
-    {#        <div class="container">#}
-    {#            <div class="row justify-content-center">#}
-    {#                <div class="col-xl-10">#}
-    {#                    <div class="testimonial_are">#}
-    {#                        <div class="testimonial_active owl-carousel">#}
-    {#                            {% for testimonial in data.testimonials %}#}
-    {#                                <article class="single_testimonial">#}
-    {#                                    <figure>#}
-    {#                                        <div class="testimonial_thumb">#}
-    {#                                            <a href="#"><img src="{{ url_for('static', filename=testimonial.image)}}"#}
-    {#                                                             alt=""></a>#}
-    {#                                        </div>#}
-    {#                                        <figcaption class="testimonial_content">#}
-    {#                                            <p>{{ testimonial.message }}</p>#}
-    {#                                            <h3>#}
-    {#                                                <a href="#">{{ testimonial.fullname }}</a><span> - {{ testimonial.role }}</span>#}
-    {#                                            </h3>#}
-    {#                                        </figcaption>#}
-    {##}
-    {#                                    </figure>#}
-    {#                                </article>#}
-    {#                            {% endfor %}#}
-    {#                        </div>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#    </section><!--/Testimonials-->#}
+    <!--Testimonials-->
+    <section class="pb-60 pt-60 gray-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="testimonial_are">
+                        <div class="testimonial_active owl-carousel">
+                            {% for testimonial in testimonies %}
+                                <article class="single_testimonial">
+                                    <figure>
+                                        <div class="testimonial_thumb">
+                                            <a href="#">
+                                                <img src="{% static testimonial.profile.avatar %}" alt="">
+                                            </a>
+                                        </div>
+                                        <figcaption class="testimonial_content">
+                                            <p>{{ testimonial.message }}</p>
+                                            <h3>
+                                                <a href="#">{{ testimonial.profile.user.get_full_name }}</a>
+                                                {% if   testimonial.profile.is_customer %}
+                                                    <span> - Cliente   </span>
+                                                {% endif %}
+
+                                            </h3>
+                                        </figcaption>
+
+                                    </figure>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/Testimonials-->
     {##}
     {##}
     {#    <!--shipping area start-->#}

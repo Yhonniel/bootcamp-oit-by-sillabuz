@@ -16,7 +16,7 @@ from .models import Profile, Testimony
 
 @admin.register(Testimony)
 class TestimonyAdmin(admin.ModelAdmin):
-    list_display = ('id', '_email', 'message', 'rate')
+    list_display = ('id', 'profile', 'message', 'rate')
 
 # admin.site.register(Testimony, TestimonyAdmin)
 

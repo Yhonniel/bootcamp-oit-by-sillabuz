@@ -36,8 +36,8 @@ from commons.models import Gender, DocumentType
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
-    document_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE)
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)  # null
+    document_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE)  # null
     document = models.CharField(max_length=20, unique=True)
     birth_date = models.DateField(blank=True, null=True)
     cell_phone = models.CharField(max_length=20, blank=True)
@@ -51,7 +51,7 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True, )
 
     def __str__(self):
-        return str(self.user.email)
+        return f'{self.user.email}'
 
     def _user(self):
         return self.user.email
@@ -85,3 +85,8 @@ class Testimony(models.Model):
 
     def _email(self):
         return self.profile.user.email
+
+
+#    |Terstimony
+#    |____Profile
+#         |____User
