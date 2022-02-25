@@ -21,7 +21,7 @@
                     </div>
                     <div class="top_right text-right">
                         <ul>
-                            <li><a href="my-account.html"> My Account </a></li>
+                            <li><a href="{% url 'login' %}"> My Account </a></li>
                             <li><a href="checkout.html"> Checkout </a></li>
                         </ul>
                     </div>
@@ -102,7 +102,7 @@
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
                             <li class="menu-item-has-children active">
-                                <a href="#">Home</a>
+                                <a href="{% url 'index' %}">Home</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="product-details.html">product</a>
@@ -131,7 +131,7 @@
                                 </ul>
                             </li>
                             <li class="menu-item-has-children">
-                                <a href="login.html">my account</a>
+                                <a href="{% url 'login' %}">my account</a>
                             </li>
                             <li class="menu-item-has-children">
                                 <a href="contact.html"> Contact Us</a>
@@ -170,7 +170,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="top_right text-right">
                             <ul>
-                                <li><a href="my-account.html">Account</a></li>
+                                <li><a href="{% url 'login' %}">Account</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
                             </ul>
                         </div>
@@ -185,8 +185,9 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="index-2.html"><img src="{%  static 'img/logo/logo.png' %}"
-                                                        alt=""></a>
+                            <a href="{% url 'index' %}">
+                                <img src="{% static 'img/logo/logo.png' %}"
+                                     alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6">
@@ -201,11 +202,11 @@
                             </div>
                             <div class="middel_right_info">
                                 <div class="header_wishlist">
-                                    <a href="#"><img src="{%  static 'img/user.png'%}" alt=""></a>
+                                    <a href="{%  url 'login' %}"><img src="{% static 'img/user.png' %}" alt=""></a>
                                 </div>
                                 <div class="mini_cart_wrapper">
                                     <a href="javascript:void(0)"><img
-                                            src="{%  static 'img/shopping-bag.png'%}" alt=""></a>
+                                            src="{% static 'img/shopping-bag.png' %}" alt=""></a>
                                     <span class="cart_quantity">2</span>
                                     <!--mini cart-->
                                     <div class="mini_cart">
@@ -213,7 +214,7 @@
                                             <div class="cart_img">
                                                 <a href="#"><img
                                                         src="
-                                                                {%  static 'img/s-product/product.jpg'%}"
+                                                                {% static 'img/s-product/product.jpg' %}"
                                                         alt=""></a>
                                             </div>
                                             <div class="cart_info">
@@ -228,7 +229,7 @@
                                             <div class="cart_img">
                                                 <a href="#"><img
                                                         src="
-                                                                {%  static 'img/s-product/product2.jpg'%}"
+                                                                {% static 'img/s-product/product2.jpg' %}"
                                                         alt=""></a>
                                             </div>
                                             <div class="cart_info">
@@ -278,7 +279,7 @@
                         <div class="main_menu menu_position">
                             <nav>
                                 <ul>
-                                    <li><a href="index-2.html">home</a></li>
+                                    <li><a href="{% url 'index' %}">home</a></li>
                                     <li><a href="productos">Product</a></li>
 
                                     <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>

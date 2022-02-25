@@ -1,0 +1,77 @@
+{% extends './layout.html' %}
+
+{% load static %}
+
+{% block title %}
+    Ecommerce | Login
+{% endblock %}
+
+{% block body %}
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="index-2.html">home</a></li>
+                            <li>Login</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <h1> {{ msg }} </h1>
+
+    <section class="account">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="account-contents"
+                         style="background: url({% static 'img/about/about1.jpg' %}); background-size: cover;">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="account-thumb">
+                                    <h2>Login now</h2>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur
+                                        similique deleniti pariatur enim cumque eum</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="account-content">
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="single-acc-field">
+                                            <label for="username">Username</label>
+                                            {{ form.username }}
+{#                                            <input type="username" id="username" placeholder="Enter your Username">#}
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <label for="password">Password</label>
+                                            {{ form.password }}
+{#                                            <input type="password" id="password" placeholder="Enter your password">#}
+                                        </div>
+                                        <div class="single-acc-field boxes">
+                                            <input type="checkbox" id="checkbox">
+                                            <label for="checkbox">Remember me</label>
+                                        </div>
+                                        <div class="single-acc-field">
+                                            <button type="submit">Login Account</button>
+                                        </div>
+                                        <a href="forget-password.html">Forget Password?</a>
+                                        <a href="register.html">Not Account Yet?</a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

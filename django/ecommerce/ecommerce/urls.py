@@ -24,10 +24,11 @@ from django.conf import settings
 
 urlpatterns = [
     path('', web_views.index, name='index'),
+    path('login', web_views.login, name='login'),
     path('products', web_views.products, name='products'),
     path('admin/', admin.site.urls),
     path('commons/genders', common_views.genders)
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
