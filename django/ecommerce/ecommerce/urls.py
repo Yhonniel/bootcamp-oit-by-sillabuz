@@ -25,6 +25,7 @@ from django.conf import settings
 urlpatterns = [
     path('', web_views.index, name='index'),
     path('login', web_views.login, name='login'),
+    path('register', web_views.register, name='register'),
     path('products', web_views.products, name='products'),
     path('admin/', admin.site.urls),
     path('commons/genders', common_views.genders)

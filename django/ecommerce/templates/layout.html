@@ -16,6 +16,14 @@
 <body>
 
 {% include 'menu.html' %}
+<!-- mensages que cargara django de manera dinamica -->
+<div>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{{ message.tags }}" > {{ message }} </div>
+        {% endfor %}
+    {% endif %}
+</div>
 
 {% block body %}
     <!-- Contenido que se cargara dinamicamente en otro archivo  -->

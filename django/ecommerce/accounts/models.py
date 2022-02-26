@@ -80,6 +80,10 @@ class Testimony(models.Model):
     message = models.TextField()
     rate = models.DecimalField(max_digits=1, decimal_places=0)
 
+    # class Meta:
+    #     verbose_name= "Testimonio"
+    #     verbose_name_plural = "Testimonies"
+
     def __str__(self):
         return self.profile.user.email
 
