@@ -25,6 +25,3 @@ class DocumentType(models.Model):
     def __str__(self):
         return self.short_name
 
-# class Profile(models.Model):
-#     name= models.CharField(max_length=255, blank=False)
-#     document_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE)
