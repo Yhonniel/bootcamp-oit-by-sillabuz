@@ -14,22 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from commons import views as common_views
 from web import views as web_views
 
 from django.conf.urls.static import static
 from django.conf import settings
-
 urlpatterns = [
     path('', web_views.index, name='index'),
     path('login', web_views.login, name='login'),
     path('register', web_views.register, name='register'),
     path('products', web_views.products, name='products'),
     path('admin/', admin.site.urls),
-    path('commons/genders', common_views.genders)
+    path('commons/genders', common_views.genders),
+    # REST FRAMEWORK
+    path('api/v1/common/genders', common_views.GenderListView.as_view()),
+    path('api-auth', include('rest_framework.urls'))
 ]
+
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 #     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)

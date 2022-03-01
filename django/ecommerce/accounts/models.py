@@ -68,7 +68,6 @@ class AbstractEcommerce(models.Model):
     )
 
     class Meta:
-        verbose_name = "ETrack Abstract Class"
         abstract = True
 
     def save(self, *args, **kwargs):
@@ -99,8 +98,8 @@ class User(AbstractUser):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
-    # REQUIRED_FIELDS = ['first_name', 'last_name']
+    # REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     def __str__(self):
         return self.email
