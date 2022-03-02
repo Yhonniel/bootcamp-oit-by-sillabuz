@@ -32,3 +32,5 @@ mysite/
 > regresar al principio las migraciones de una aplicacion
 - ```$ python manage.py migrate <app_name> zero``` 
  
+> Cargar los fixtures # Seeders
+```` $ python manage.py loaddata gender.json documenttype.json ````

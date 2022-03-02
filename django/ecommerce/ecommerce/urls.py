@@ -30,6 +30,7 @@ urlpatterns = [
     path('commons/genders', common_views.genders),
     # REST FRAMEWORK
     path('api/v1/common/genders', common_views.GenderListView.as_view()),
+    path('api/v1/common/document-types', common_views.DocumentTypeListView.as_view()),
     path('api-auth', include('rest_framework.urls'))
 ]
 
