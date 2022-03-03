@@ -29,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'apps.commons',
+    'apps.accounts',
     'apps.home'  # Enable the inner home (home)
 ]
 
@@ -123,3 +126,6 @@ STATICFILES_DIRS = (
 
 #############################################################
 #############################################################
+
+
+AUTH_USER_MODEL = 'accounts.User'
