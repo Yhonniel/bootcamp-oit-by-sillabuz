@@ -7,8 +7,8 @@ from apps.accounts.models import User
 
 class RegisterCustomSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, )
-    password = serializers.CharField(required=True, validators=[validate_password], )
-    password2 = serializers.CharField(required=True, validators=[validate_password], )
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password], )
+    password2 = serializers.CharField(write_only=True, required=True, validators=[validate_password], )
     token = serializers.CharField(read_only=True, )
 
     def validate_email(self, value):  # validacion especifica

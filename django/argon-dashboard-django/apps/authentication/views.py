@@ -64,7 +64,7 @@ def register_user(request):
 
 
 # FRONTEND
- 
+
 class CustomCreateUser(CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
