@@ -8,6 +8,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+
+# DASHBOARD
+from .serializers import RegisterCustomSerializer
+from ..accounts.models import User
+
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -54,3 +61,11 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+
+# FRONTEND
+ 
+class CustomCreateUser(CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterCustomSerializer
