@@ -24,7 +24,9 @@ class RegisterCustomSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
-        user = User.objects.create(email=validated_data['email'])
+        user = User.objects.create(email=validated_data['email'],
+                                   first_name=validated_data['first_name'],
+                                   last_name=validated_data['last_name'], )
         user.set_password(validated_data['password'])
         user.save()
 
@@ -34,4 +36,4 @@ class RegisterCustomSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('password', 'password2', 'email', 'token')
+        fields = ('password', 'password2', 'email', 'token', 'first_name', 'last_name',)
