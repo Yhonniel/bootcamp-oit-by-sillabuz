@@ -6,13 +6,15 @@ Copyright (c) 2019 - present AppSeed.us
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from rest_framework.views import APIView
+
 from .forms import LoginForm, SignUpForm
 
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 
 # DASHBOARD
-from .serializers import RegisterCustomSerializer
+from .serializers import RegisterCustomSerializer, LoginSerializer
 from ..accounts.models import User
 
 
@@ -65,7 +67,22 @@ def register_user(request):
 
 # FRONTEND
 
+
+
+
+class CustomAuthToken(APIView):
+    serializer_class = LoginSerializer
+
+    def post(self, request, *args, **kwargs):
+        pass
+
+
+
+
 class CustomCreateUser(CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterCustomSerializer
+
+
+

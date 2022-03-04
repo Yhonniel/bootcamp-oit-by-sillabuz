@@ -1,8 +1,29 @@
+from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.password_validation import validate_password
 
 from apps.accounts.models import User
+
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.CharField(required=True)
+    password = serializers.CharField(required=True, write_only=True)
+    token = serializers.CharField(read_only=True)
+
+    def validate(self, attrs):
+        # Autenticacion
+        user = authenticate(username=attrs['email'], password=attrs['password'])
+        if not user:
+            raise serializers.ValidationError('Crendenciales Invalidas')
+
+        # Guardamos user  y lo enviamos atravez del contexto  para el create
+        self.context['user'] = user
+        return attrs
+
+    def create(self, validated_data):
+        token  = Token.objects.get_or_create(user=self.context['user'])
+        return self.context['user'], token
 
 
 class RegisterCustomSerializer(serializers.ModelSerializer):
