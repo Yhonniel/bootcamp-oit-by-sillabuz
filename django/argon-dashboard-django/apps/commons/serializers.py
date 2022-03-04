@@ -1,7 +1,7 @@
 # Django Rest Framework
 from rest_framework import serializers
 
-from apps.commons.models import Gender, DocumentType
+from apps.commons.models import Gender, DocumentType, Country, Region, SubRegion, District
 
 
 # put
@@ -19,3 +19,39 @@ class DocumentTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = DocumentType
         fields = '__all__'
+
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = '__all__'
+        read_only_fields = [
+
+        ]
+
+
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = '__all__'
+        read_only_fields = [
+
+        ]
+
+
+class SubRegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubRegion
+        fields = '__all__'
+        read_only_fields = [
+
+        ]
+
+
+class DistrictSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = District
+        fields = '__all__'
+        read_only_fields = [
+
+        ]
