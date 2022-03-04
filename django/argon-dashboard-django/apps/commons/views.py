@@ -2,8 +2,11 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from apps.commons.models import Gender, DocumentType
-from apps.commons.serializers import GenderSerializer, DocumentTypeSerializer
+from apps.commons.models import Gender, DocumentType, Country, Region, SubRegion, District
+from apps.commons.serializers import GenderSerializer, DocumentTypeSerializer, CountrySerializer, RegionSerializer, \
+    SubRegionSerializer, DistrictSerializer
+
+from rest_framework import viewsets
 
 
 class GenderListView(APIView):
@@ -30,3 +33,23 @@ class DocumentTypeListView(APIView):
         document_type = DocumentType.objects.filter(is_active=True)
         serializer = DocumentTypeSerializer(document_type, many=True)
         return Response(serializer.data)
+
+
+class CountryView(viewsets.ModelViewSet):
+    queryset = Country.objects.all()
+    serializer_class = CountrySerializer
+
+
+class RegionView(viewsets.ModelViewSet):
+    queryset = Region.objects.all()
+    serializer_class = RegionSerializer
+
+
+class SubRegionView(viewsets.ModelViewSet):
+    queryset = SubRegion.objects.all()
+    serializer_class = SubRegionSerializer
+
+
+class DistrictView(viewsets.ModelViewSet):
+    queryset = District.objects.all()
+    serializer_class = DistrictSerializer
