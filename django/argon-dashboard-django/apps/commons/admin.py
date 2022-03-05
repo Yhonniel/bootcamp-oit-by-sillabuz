@@ -1,8 +1,12 @@
 from django.contrib import admin
 
 # Register your models here.
-from apps.commons.models import Gender, DocumentType, Country, Region, SubRegion, District
+from apps.commons.models import Gender, DocumentType, Country, Region, SubRegion, District, Category
 
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description', 'image')
 
 @admin.register(Gender)
 class GenderAdmin(admin.ModelAdmin):
