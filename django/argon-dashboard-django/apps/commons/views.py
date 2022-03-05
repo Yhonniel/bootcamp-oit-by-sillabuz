@@ -27,12 +27,23 @@ class GenderListView(APIView):
         pass
 
 
-class DocumentTypeListView(APIView):
-    def get(self, request):
-        # document_type = DocumentType.objects.all()
-        document_type = DocumentType.objects.filter(is_active=True)
-        serializer = DocumentTypeSerializer(document_type, many=True)
-        return Response(serializer.data)
+# class DocumentTypeListView(APIView):
+#     def get(self, request):
+#         # document_type = DocumentType.objects.all()
+#         document_type = DocumentType.objects.filter(is_active=True)
+#         serializer = DocumentTypeSerializer(document_type, many=True)
+#         return Response(serializer.data)
+
+class DocumentTypeViewSet(viewsets.ModelViewSet):
+    queryset = DocumentType.objects.all()
+    serializer_class = DocumentTypeSerializer
+
+
+# GET  country/ -> lista de paises
+# POST country/ -> registro
+# PUT  country/{id}/  -> actualizar un elemento
+# GET  country/{id}/  -> detalle de un elemento
+# DELETE country/{id}/ -> eliminar elimancion - fisica
 
 
 class CountryView(viewsets.ModelViewSet):
