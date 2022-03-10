@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'apps.commons',
     'apps.accounts',
-    'apps.home'  # Enable the inner home (home)
+    'apps.home',
+    'library'
 ]
 
 MIDDLEWARE = [
