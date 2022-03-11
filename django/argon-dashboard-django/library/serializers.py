@@ -65,3 +65,22 @@ class CreateBookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ('name', 'author', 'publication_date')
+
+
+class UpdateBookSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(required=True)
+
+    def validate_name(self, value):
+        if value is None:
+            raise serializers.ValidationError({'Empty'})
+
+        return value
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.email)
+        instance.save()
+        return instance
+
+    class Meta:
+        model = Book
+        fields = ('name',)

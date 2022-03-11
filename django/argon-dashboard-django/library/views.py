@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from library.models import Book, Author
-from library.serializers import BookSerializers, CreateBookSerializer
+from library.serializers import BookSerializers, CreateBookSerializer, UpdateBookSerializer
 
 
 class BooksView(APIView):
@@ -30,7 +30,7 @@ class BooksView(APIView):
         if serializer.is_valid(raise_exception=True):
             # print('SERIALIZER_DATA', serializer.data)
             # YA TENEMOS EL BODY CONVERTIDO EN UN OBJETO
-            book = serializer.save() # SAVE
+            book = serializer.save()  # SAVE
             data = BookSerializers(book).data
             return Response(data, status=status.HTTP_201_CREATED)
 
@@ -49,8 +49,27 @@ class BookView(APIView):
         return Response(serializers.data, status=status.HTTP_200_OK)
 
     # Actualizar un elemento
-    def put(self, request):
-        pass
+    def put(self, request, pk):
+        # only django
+        # name = request.data.get('name')
+        # print(name)
+        # if name is None:
+        #     return Response(status=status.HTTP_400_BAD_REQUEST)
+        #
+        # # Validar que exista el ID
+        # book = Book.objects.filter(pk=pk).first()
+        # book.name = name
+        # book.save()
+
+        book = Book.objects.filter(pk=pk).first()
+        serializer = UpdateBookSerializer(book, data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        book = serializer.save() # actualizer
+
+        data = BookSerializers(book).data
+        return Response(data, status=status.HTTP_200_OK)
+        # serializer = UpdateBookSerializer(data=request.data)
 
     # Eliminar un elemento
     def delete(self, request, pk):
