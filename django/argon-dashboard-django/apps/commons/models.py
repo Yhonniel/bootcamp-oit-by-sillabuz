@@ -49,6 +49,18 @@ class Category(models.Model):
         default='core/static/images/category/default.png',
     )
     father = models.ForeignKey('commons.Category', on_delete=models.CASCADE)
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=("Is active")
+    )
+    created_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=("Created At")
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=("Updated At")
+    )
 
 
 class BasePlace(models.Model):

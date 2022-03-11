@@ -1,8 +1,9 @@
 from rest_framework import routers
 
-from apps.commons.views import CountryView, RegionView, SubRegionView, DistrictView
+from apps.commons.views import CountryView, RegionView, SubRegionView, DistrictView, DocumentTypeViewSet
 
 router = routers.DefaultRouter()
+router.register('document', DocumentTypeViewSet)
 router.register('country', CountryView)
 router.register('region', RegionView)
 router.register('subregion', SubRegionView)

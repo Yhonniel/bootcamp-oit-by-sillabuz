@@ -9,6 +9,8 @@ from django.urls import path, include  # add this
 urlpatterns = [
     path('admin/', admin.site.urls),  # Django admin route
     path('api/v1/commons/', include('apps.commons.urls')),
+    path('', include('apps.accounts.urls')),
+    path('api/', include('library.urls')),
     path("", include("apps.authentication.urls")),  # Auth routes - login / register
     path("", include("apps.home.urls")),  # UI Kits Html files
 

@@ -69,14 +69,7 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 
-# FRONTEND
-
-
 class CustomAuthToken(APIView):
-    throttle_classes = ()
-    permission_classes = ()
-    parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
-    renderer_classes = (renderers.JSONRenderer,)
     serializer_class = AuthCustomTokenSerializer
 
     def get_serializer_context(self):
@@ -91,10 +84,12 @@ class CustomAuthToken(APIView):
         return self.serializer_class(*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        print(request.data)
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=True) # error -> lanza exception
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
+        print(token)
         return Response({
             'token': token.key,
             'user_id': user.pk,
