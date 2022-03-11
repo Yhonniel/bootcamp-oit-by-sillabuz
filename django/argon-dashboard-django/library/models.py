@@ -5,6 +5,7 @@ from django.db import models
 
 class Author(models.Model):
     name = models.CharField(max_length=250, )
+    is_active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Autor'

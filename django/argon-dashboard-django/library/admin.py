@@ -6,9 +6,9 @@ from library.models import Book, Author
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id', 'author', 'publication_date')
+    list_display = ('name', 'id', 'author', 'publication_date', 'is_active')
 
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('name', 'id')
+    list_display = ('name', 'id', 'is_active')

@@ -6,8 +6,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from library.models import Book
-from library.serializers import BookSerializers
+from library.models import Book, Author
+from library.serializers import BookSerializers, CreateBookSerializer
 
 
 class BooksView(APIView):
@@ -20,7 +20,19 @@ class BooksView(APIView):
 
     # Crear un elemento
     def post(self, request):
-        pass
+        # djando solo
+        # name = request.data.get('name')
+
+        # DRF => BODY -> parsear -> SERIALIZADORES => BookSerializers
+        # print('REQUEST_DATA', request.data)
+
+        serializer = CreateBookSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            # print('SERIALIZER_DATA', serializer.data)
+            # YA TENEMOS EL BODY CONVERTIDO EN UN OBJETO
+            book = serializer.save() # SAVE
+            data = BookSerializers(book).data
+            return Response(data, status=status.HTTP_201_CREATED)
 
 
 class BookView(APIView):
@@ -41,5 +53,8 @@ class BookView(APIView):
         pass
 
     # Eliminar un elemento
-    def delete(self, request):
-        pass
+    def delete(self, request, pk):
+        book = get_object_or_404(Book, pk=pk, is_active=True)
+        book.is_active = False
+        book.save()
+        return Response(status=status.HTTP_202_ACCEPTED)
